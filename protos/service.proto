@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Empty {}
+
+message Reply {}
+
+service GrpcService
+{
+    rpc GetStream(Empty) returns (stream Reply);
+}
