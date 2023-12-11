@@ -1,4 +1,7 @@
 #include <iostream>
+// #include "./ext/grpcpp/server_builder.h"
+#include "./ext/grpc/include/grpc/grpc.h"
+#include "./ext/grpc/include/grpc++/grpc++.h"
 #include "./service.grpc.pb.h"
 
 class CGrpcService : public GrpcService::CallbackService {
@@ -43,5 +46,13 @@ grpc::ServerWriteReactor<Reply>* CGrpcService::GetStream(
 
 int main()
 {
-    std::cout << "Hello world!" << std::endl;
+    CGrpcService service;
+    grpc::ServerBuilder builder;
+
+    builder.AddListeningPort("0.0.0.0:50051", grpc::InsecureServerCredentials());
+    builder.RegisterService(&service);
+
+    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+
+    server->Wait();
 }
