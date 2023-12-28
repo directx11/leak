@@ -24,6 +24,8 @@ grpc::ServerWriteReactor<Reply>* CGrpcService::GetStream(
 
             void OnWriteDone(bool ok) override
             {
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                std::cout << "next write..." << std::endl;
                 NextWrite();
             }
 
@@ -55,4 +57,5 @@ int main()
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
 
     server->Wait();
+    std::cout << "waiting for flutter RPC call..." << std::endl;
 }

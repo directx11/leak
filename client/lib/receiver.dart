@@ -25,7 +25,9 @@ class Receiver {
     ResponseStream<Reply> call = client.getStream(Empty());
 
     call.listen(
-      (data) {},
+      (data) {
+        print("received data from sever");
+      },
       onError: (error) {
         print("error $error");
       },
