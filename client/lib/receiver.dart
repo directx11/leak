@@ -12,7 +12,7 @@ class Receiver {
 
   void receiveStream() {
     ClientChannel channel = ClientChannel(
-      "127.0.0.1",
+      "172.30.234.77",
       port: 50051,
       options: const ChannelOptions(
         credentials: ChannelCredentials.insecure(),
@@ -26,7 +26,7 @@ class Receiver {
 
     call.listen(
       (data) {
-        print("received data from sever");
+        // print("received data from sever");
       },
       onError: (error) {
         print("error $error");
