@@ -26,8 +26,8 @@ grpc::ServerWriteReactor<Reply>* CGrpcService::GetStream(
 
             void OnWriteDone(bool ok) override
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(200));
-                std::cout << "next write..." << std::endl;
+                // std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                // std::cout << "next write..." << std::endl;
                 NextWrite();
             }
 
